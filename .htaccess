@@ -1,0 +1,10 @@
+AddDefaultCharset UTF-8
+
+#AddType application/x-httpd-php .php .htm .html
+#AddType application/x-httpd-php .php
+#AddHandler application/x-httpd-php5 .php .htm .html .phtml
+#AddHandler fcgid-script .php .html .htm
+
+FCGIWrapper /usr/local/cpanel/cgi-sys/php5 .html
+FCGIWrapper /usr/local/cpanel/cgi-sys/php5 .htm
+FCGIWrapper /usr/local/cpanel/cgi-sys/php5 .php
