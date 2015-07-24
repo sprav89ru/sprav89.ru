@@ -1,0 +1,109 @@
+<style>
+.block_reg {width:70% ;margin:15% auto; padding: 0px 0px 20px 1px;} 
+.block_btn {} 
+/*background-color: blue;*/
+</style>
+
+<script></script>
+
+<!-- Форма для регистрации -->
+<div class="block block_reg">
+
+<?php if ($_GET['reg'] == 'registration') {  ?> 
+
+<h1>Регистрация на сайте</h1>
+<form method="post" action="<?php echo PATH;?>">
+<fieldset>
+
+<legend>Данные пользователя:</legend>
+<div>
+	<label for="name">Имя:</label>
+	<input type="text" name="name" id="name" class="txt">
+</div>
+
+<div>
+	<label for="family">Фамилия:</label>
+	<input type="text" name="family" id="family" class="txt">
+</div>
+
+<div>
+	<label for="login">Логин:</label>
+	<input type="text" name="login" id="login" class="txt">
+</div>
+
+<div>
+	<label for="email">Эл.почта:</label>
+	<input type="text" name="email" id="email" class="txt">
+</div>
+
+<div>
+	<label for="password1">Пароль:</label>
+	<input type="password" name="password1" id="password1" class="txt">
+</div>
+<div>
+	<label for="password2">Подтверждение пароля:</label>
+	<input type="password" name="password2" id="password2" class="txt">
+</div>
+</fieldset>
+<!-- 
+	<fieldset>
+	<legend>Address Details</legend>
+	<div>
+	<label for="address1">Address line one:</label>
+	<input type="text" name="address1" id="address1" class="txt">
+	</div>
+	<div>
+	<label for="address2">Address line two:</label>
+	<input type="text" name="address2" id="address2" class="txt">
+	</div>
+	<div>
+	<label for="city">Town / City:</label>
+	<input type="text" name="city" id="city" class="txt">
+	</div>
+	<div>
+	<label for="zip">Zip / Post code:</label>
+	<input type="text" name="zip" id="zip" class="txt">
+	</div>
+	</fieldset>
+ -->	
+<div class="block">
+	<input type="submit" name="btnSubmit" id="btnSubmit" value="Отправить" class="btn" />
+</div>
+</form>
+
+<!-- Форма для входа -->
+
+<?php 	} 	else { ?>
+
+<h1>Вход:</h1>
+	<form method="post" action="fieldset.html">
+<fieldset>
+	<legend>Данные для входа:</legend>
+
+<div>
+	<label for="login">Логин:</label>
+	<input type="text" name="login" id="login" class="txt">
+</div>
+
+<div>
+	<label for="email">или Эл.почта:</label>
+	<input type="text" name="email" id="email" class="txt">
+</div>
+
+<div>
+	<label for="password1">Пароль:</label>
+	<input type="password" name="password1" id="password1" class="txt">
+</div>
+
+
+</fieldset>
+
+<div>
+	<input type="submit" name="btnSubmit" id="btnSubmit" value="Вход" class="btn" />
+</div>
+
+</form>
+
+<?php }	?>
+
+</div> <!--  <div class="block block_reg"> -->

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XML, объекты и массивы в PHP</title>
+<style type="text/css">
+textarea {
+    width: 30%; /* Ширина поля в процентах */
+    height: 200px; Высота поля в пикселах */
+     /* resize: none; Запрещаем изменять размер */
+   } 
+ p {margin: 10px 0px 5px 1px;}  
+
+.back_site {background:#B9CDF3} 
+.back_xml {background:#ECF997} 
+.back_php {background:#F6C3F8} 
+
+</style>
+
+<h1>XML, объекты и массивы в PHP. Часть 3</h1>
+
+<p><a href="PHP_XML_objects_arrays_01.html">Часть 1</a> — <a href="PHP_XML_objects_arrays_02.html">Часть 2</a></p>
+
+<h2>Итоги и реализация</h2>
+
+<p>Начало: <a href = "PHP_XML_objects_arrays.html">Часть 1</a> — <a href = "PHP_XML_objects_arrays_02.html">Часть 2</a></p>
+
+<p>Итак, имеем XML, выводим все его данные. Доступ к подчиненным может быть через children(), может через foreach.<br/>
+</p>
+
+<textarea class = "back_xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> -->
+<content>
+	<parameter name="Параметр 1 Имя" par1="Еще параметр par1">
+		<property1>Свойство 1</property1>
+		<property2>Свойство 2</property2>
+	</parameter>
+
+	<parameter name="Параметр 2 Имя" par1="Параметр par1">
+		<property3>Свойство 3</property3>
+		<property4>Свойство 4</property4>
+	</parameter>
+</content>
+</textarea>
+
+<textarea class = "back_php">
+<?php
+$xml = simplexml_load_file ('content.xml');
+
+foreach($xml as $key => $value) { 
+	echo ' key = '.$key.' ; value = '.$value.' ; value[name] = '.$value['name'].' ; value[par1] = '.$value['par1'];echo '<br/>';
+		foreach ($value -> children() as $key => $value) {
+			echo ' key = '.$key.' ; $value = '.$value.' ; $value[name] = '.$value['name'].' ; value[par1] = '.$value['par1'];echo '<br/>';
+		}
+	}
+?>
+</textarea>
+
+<textarea class = "back_site">
+key = parameter ; value = ; value[name] = Параметр 1 Имя ; value[par1] = Еще параметр par1
+key = property1 ; $value = Свойство 1 ; $value[name] = ; value[par1] =
+key = property2 ; $value = Свойство 2 ; $value[name] = ; value[par1] =
+key = parameter ; value = ; value[name] = Параметр 2 Имя ; value[par1] = Параметр par2
+key = property3 ; $value = Свойство 3 ; $value[name] = ; value[par1] =
+key = property4 ; $value = Свойство 4 ; $value[name] = ; value[par1] = 
+</textarea>
+
+<p>Ключ — имя тега, Значение value — в теге, параметры name и par1 — в открывающем теге, выводятся через скобки ['par1'].</p>
+<p>Отправляем имя параметра хотим получить свойства. В общем виде надо бы вытащить имя реквизита, тогда можно задавать запрос, не зная конфигурации.<br/>
+Но не сейчас. На этом закончим.</p>
+
+
+<p><a href="PHP_XML_objects_arrays_01.html">Часть 1</a> — <a href="PHP_XML_objects_arrays_02.html">Часть 2</a></p>

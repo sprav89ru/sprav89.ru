@@ -1,0 +1,56 @@
+﻿<?php
+
+	// require 'funcs.php';
+
+	if (defined('HOST')) {}
+    else {require 'login.php';}
+	
+	$mysqli = mysqli_connect(HOST,USER,PASSWORD,DB_SPRAV89);
+	$p['mysqli'] = $mysqli;
+	
+	if ($mysqli->connect_error) {die('Ошибка подключения (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);}
+	mysqli_query($mysqli,"SET NAMES utf8");
+
+	//Заголовок "Новости"
+	echo '<div class="block_title">';
+	$link='href="'.PATH.'?news="';
+	echo '<a '.$link.' class="block_title_a">Новости сайта:</a>';
+	echo '</div>';	//выводим "Новости"
+	
+	$q = 'SELECT * FROM news ORDER by num DESC'; 
+	$res = mysqli_query($p['mysqli'],$q) or die (mysqli_error($p['mysqli']));
+	
+	while ($row = mysqli_fetch_assoc($res))	{
+			 
+		$y = substr($row['datetime'],0,4);
+		$m=	month(substr($row['datetime'],5,2));
+		$d = substr($row['datetime'],8,2);
+		if ($d[0]=='0') {$d = substr($row['datetime'],9,1);}
+
+		$data = $d.' '.$m.' '.$y.' г.'; 
+		$html_code = $row['html_code'];
+		$link = PATH.'/?new='.$row['num'];
+
+		// найти '<br' , его позицию и заменить от него до конца строки на ссылку
+		if (strpos ( $html_code ,'<br') > 0) { // если есть '<br', обрезаем, начиная с него 
+			$html_code = trimmed($html_code,'<br');
+		}
+		//если есть еще и файл, добавляем ссылку на него
+		$p['context'] = 'new';
+		$p['num'] = $row['num'];
+
+		$p = file_search($p);
+		// echo ' file_search '.$p['filename'];
+
+		if ( $p['filename'] !== 0) {
+			$html_code = $html_code.'<a class = "a_art" href="'.$link.'"> Подробнее >>> </a>';
+		}
+
+		echo '<div class="new">';
+		echo '<div class="ndatetime"><a class = "a_art" href="'.$link.'">'.$data.'</a></div><div class="nhtml_code">'.$html_code.'</div>'; //' ('.$row['num'].')'.
+		echo '</div>';
+	}
+?>
+
+
+

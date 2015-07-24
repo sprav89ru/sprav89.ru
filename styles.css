@@ -1,0 +1,481 @@
+@charset "utf-8"; 
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+/*b*/, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*	http://yapro.ru/web-master/css/vendornie-prefiksi.html
+	-o- — префикс для браузера Опера
+	-moz- — префикс для браузеров из семейства Mozilla
+	-ms — префикс для Интернет Експлорера 8 (да, даже Microsoft ввела свой префикс, в частности для того, чтобы изобретенные ею CSS-фильтры можно было использовать, не нарушая при этом веб-стандарты)
+	-webkit- — префикс для браузеров, построенных на движке Webkit, в частности Safari и Chrome
+	-icab- — префикс для браузера iCab (альтернативного, как заявлено на родном сайте, браузера для Apple)
+	-khtml-. KHTML — компонент для просмотра HTML документов разработанный для среды KDE для UNIX-систем. Был представлен в 2000 году, для использования в Konqueror*/
+	
+body {font:12pt sans-serif, Verdana, Arial, Helvetica; color:#000;}
+/* position: relative — http://www.cyberforum.ru/html/thread547121.html#post2909673*/
+.container {width:1366px; margin:0 auto; overflow:hidden; position: relative; }
+.header {} /*width:100%; height:120px*/
+.menu {padding:0px 1px 5px 2px}
+.content {width:63%; float:left; padding:0px 5px 0px 5px; margin:0px 5px 0px 5px;} /*margin:0 auto; margin:5px 1px 5px 0px;*/
+
+.l-sidebar {float:left; padding:0px 0px 0px 0px; margin:0 auto;}
+.sidebar1 {width:16%;}
+.sidebar2 {width:19%;}
+
+/*wrap*/
+	.wrap { /*background-color: grey;*/
+	width: 100%;
+	margin: 0px auto;
+	/*p*/
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 11pt;
+	}
+	.wrap p {}
+	.wrap img {width: 100%;}
+
+/*backing*/	
+	.backing {
+	border-radius: 12px;
+	background-color: #5B7FA6; /*rgba(111, 111, 111, 1) */
+	padding: 2px 0px 2px 0px;
+	margin: 2px auto;
+	}
+		.backing p {
+		margin: 0px auto;
+		color: #fff;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 11pt;
+		font-weight: bold;
+		}
+		.reklama2015 {
+		font-size: 10pt;
+		text-align: left;
+		width:50%;
+		color: #FFFFFF;
+		margin: 0px auto;
+		background-color: red; /*rgba(111, 111, 111, 1) */
+		}
+
+.sidebar1 img {width:100%; padding:0px 0px 0px 0px; margin:0px auto; } /*width:95%;*/
+.sidebar2_img {width:100%; padding:0px 0px 0px 0px; margin:0px auto}
+.sidebar1_a {padding:0px 0px 0px 0px}
+.sidebar2_a {padding:0px 0px 0px 0px}
+.search {width:230px; padding:3px 1px 3px 1px; margin:2px 2px 2px 1px}
+
+.block {width:100%;  margin:0px auto;} /*bl_  если вставить display: inline-block; тогда по центу не встает */
+.main_news		 {width: 100%;float: left;margin: 0px auto;}
+.main_articles	 {width: 50%;float: left;}
+.main_nottell	 {width: 50%;float: right;}
+.main_dictionary {margin: 5px auto;}	
+
+.ogl {; border-bottom:1px solid #CFCFCF; display: inline-block; padding:0px 0px 5px 1px;}
+/**/
+.ogl_sub {padding:0px 0px 0px 1px; margin:5px 10px 0px 1px; background: #fff; text-align: right } /*float:left; border-bottom:1px solid #CFCFCF;*/
+
+
+/* страницы новостей new   */
+.new_one	 { margin: 0 auto;}
+.data_new	 {margin:20px 12px 8px 30px;padding:0px 0px 0px 1px;font-size:90%;}
+.h1_new	 {font:bold 150% sans-serif; color:rgba(3, 81, 153, 1);margin:12px 12px 8px 30px}
+.anons_new {line-height: 1.5; border-left:6px solid red;padding:0px 12px 0px 12px; margin: 20px 45px 20px 30px} 
+.pnew	 {line-height: 1.5;	margin:10px 45px 2px 30px;} 
+.new_img {width:50%; float:right; margin: 0px 10px 0px 15px;}
+/* страницы новостей new */
+
+h1, h2, h3, h4, h5, h6, p, ul, li, div {
+	line-height: 130%; 
+/*	-moz-line-height:130%; 
+	-webkit-line-height:145%; */
+	}
+
+h1 {font:bold 150% sans-serif; color:rgba(3, 81, 153, 1);margin: 0px 0px 0px 1px}
+h2 {font:bold 125% sans-serif; color:rgba(17, 5, 5, 1); margin: 12px 0px 0px 1px}
+h3 {font:bold 120% sans-serif; margin: 12px 0px 0px 15px}
+h4 {font:bold 110% sans-serif; margin: 15px 0px 10px 20px; color: #444343;}
+
+.h {margin: 25px 24px 0px 230px; padding: 0px 0px 0px 1px;} /*Для div включающих h margin fix */
+
+.h1_art {font:bold 150% sans-serif; color:rgba(3, 81, 153, 1); padding-right:15px; padding-left:20px}
+.h2_art {font:bold 125% sans-serif; color:rgba(17, 5, 5, 1); margin:10px 0px; padding-right:12%; padding-left:30px}
+.h3_art {font:bold 120% sans-serif; color:rgba(5, 3, 3, 1); margin:10px 0px; padding-right:10%; padding-left:40px}
+.h4_art {font:bold 115% sans-serif; color:rgba(5, 3, 3, 1); margin:10px 0px; padding-right:10%; padding-left:40px}
+
+/*Старые для статей*/
+
+.h1_articles {font:bold 150% sans-serif; color:rgba(3, 81, 153, 1); padding-right:15px; padding-left:20px}
+.h2_articles {font:bold 125% sans-serif; color:rgba(17, 5, 5, 1); margin:10px 0px; padding-right:12%; padding-left:30px}
+.h3_articles {font:bold 120% sans-serif; color:rgba(5, 3, 3, 1); margin:10px 0px; padding-right:10%; padding-left:40px}
+	
+
+
+a {text-decoration:none}
+a:link {}
+a:visited {}
+a:hover, a:active, a:focus {}
+
+a.contacts {color:#4F4F4F;
+	border-left:0px solid #6495ED; padding:0px; margin:0px} /*Обнуляем заданные для общего contacts */
+a.contacts:hover {color:#817e80;}
+a.contacts:visited {color:#4F4F4F;}
+
+a.contacts_a { font-size: 100%;  font-family: Verdana, Arial, Helvetica, sans-serif;   color: #828282;  }
+a.contacts_a:hover,
+a.contacts_a:active,
+a.contacts_a:focus {font-family: Verdana, Arial, Helvetica, sans-serif; color: #363636;}
+
+/*Для вывода в справочнике*/
+.navy {margin:3px 8px 4px 12px}
+.art_name {margin:0px 0px 0px 40px; padding:0px 0px 0px 6px; padding:1px 0px; width:90%; border-left:6px solid #6495ED;}
+.art_name_title {font-size:100%; margin:0px 0px 0px 6px; padding:0px 0px 0px 6px}
+.art_name_subtitle{font-size:90%; text-indent:0px; padding:0px 0px 0px 1px; margin:5px 23px 3px 23px; font-style:italic}
+
+
+.art_name_a {color:#000000; padding:0px 0px 0px 0px} /* margin:1px 0px 0px 15px; */
+.art_name_a:hover, 
+.art_name_a:active, 
+.art_name_a:focus {color:#1E90FF; text-decoration: underline; }
+
+.news_a {color:#0645AD; padding:0px 0px 0px 0px;} /* margin:1px 0px 0px 15px; border-bottom: 1px solid #FA2800; */
+.news_a:hover, 
+.news_a:active, 
+.news_a:focus {color:#0645AD; text-decoration: underline; }/*из вики*/
+
+.a_red {color:#000000; padding:0px 0px 0px 0px; border-bottom: 1px solid #FA2800;} /* margin:1px 0px 0px 15px; */
+.a_red:hover, 
+.a_red:active, 
+.a_red:focus {color:#FA2800;} /**/
+
+.group {border-bottom:1px solid #666; margin:0px 0px 0px 1px}
+.a_group {padding:0px 0px 0px 16px; display:block; text-decoration:none}
+.a_group:link {color:#42413C;}
+.a_group:visited {color:#6E6C64}
+.a_group:hover, .a_group:active, .a_group:focus {background:#DCDCDC; color:#000}
+
+.block_title		 {margin:-20px 0px 10px 0px; padding:0px 0px 0px 1px; 	width:100%;			background:#F5F5F5;}
+.block_title_a	 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; display:block; text-decoration:none; color:#000;background:#e3e2e4;}
+.block_title_a:link	 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; color:#000;display:block; text-decoration:none}
+.block_title_a:hover,
+.block_title_a:active,
+.block_title_a:focus 	 {margin:0px 0px 0px 0px; padding:8px 0px 7px 16px;	display:block;background-color:#CFCFCF; color:#000;	border-bottom: 1px solid #666; text-decoration:none}
+
+/* НЕ ТРОГАТЬ !!!
+$a_light: #F5F5F5
+$a_middle: #BEBEBE
+$a_dark: #CFCFCF*/
+
+.group1				 {margin:1px 0px 2px 0px; padding:0px 0px 0px 0px; width:100%; font-weight:bold; background:#CFCFCF;}
+.a_group1			 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; display:block; text-decoration:none; color:#000;background:#CFCFCF;}
+.a_group1:link		 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; color:#000;display:block; text-decoration:none}
+.a_group1:hover,
+.a_group1:active,
+.a_group1:focus		 {margin:0px 0px 0px 0px; padding:8px 0px 7px 16px; display:block;background-color:#BEBEBE;
+					 border-bottom: 1px solid #666; color:#000; text-decoration: none} 
+
+.group2				 {margin:1px 0px 2px 0px; padding:0px 0px 0px 0px; 	width:100%;			background:#F5F5F5;}
+.a_group2			 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; display:block; text-decoration:none; color:#000;background:#e3e2e4;}
+.a_group2:link		 {margin:0px 0px 0px 0px; padding:8px 0px 8px 16px; color:#000;display:block; text-decoration:none}
+.a_group2:hover,
+.a_group2:active,
+.a_group2:focus 	 {margin:0px 0px 0px 0px; padding:8px 0px 7px 16px;	display:block;background-color:#CFCFCF; color:#000;
+					border-bottom: 1px solid #666; text-decoration:none}
+
+.naimenovanie_na_pechat				 {margin:0px 0px; padding:0px 0px 0px 0px;	width:100%;background:#DCDCDC; color:#000;}
+.naimenovanie_na_pechat_a			 {margin:8px 0px; padding:8px 0px 8px 16px; text-decoration:none; color:#000;	display:block;}
+.naimenovanie_na_pechat_a:link		 {margin:8px 0px; padding:8px 0px 8px 16px; text-decoration:none; color:#000;	display:block;	 }
+.naimenovanie_na_pechat_a:hover,
+.naimenovanie_na_pechat_a:active,
+.naimenovanie_na_pechat_a:focus		 {margin:8px 0px; padding:8px 0px 7px 16px; background-color:#d2d2d2; color:#000;
+									border-bottom: 1px solid #666; display:block;text-decoration:none; }
+
+form {margin: 0 auto; } /*background-color: blue;*/
+input {height:20px; display: inline-block; margin: 0px 0px 0px 1px; width: 200px;} /*display: inline-block;*/
+
+input.txt {color: #00008B;background-color: #E3F2F7;}
+input.btn {color: #00008B;background-color: #ADD8E6;border: 1px outset #00008B;
+width:100px;height:30px;margin:0 auto;}
+
+form div {clear: left;margin: 0;padding: 0;padding-top: 10px;} 
+form div label {float: left;width: 40%;font: bold 0.9em Arial, Helvetica, sans-serif;}
+fieldset {border: 1px dotted #61B5CF;margin-top: 1.4em;padding: 0.6em;}
+legend {font: bold 0.8em Arial, Helvetica, sans-serif;color: #00008B;background-color: #FFFFFF; text-align: right;}
+
+/* НЕ ТРОГАТЬ !!!*/									
+
+a img {border:none}
+
+.a_art {color:#4F4F4F}
+.a_art:hover {color:#817e80;}
+
+.img {text-align:center; margin:20px 0px 25px 0px}
+
+.new {font-size: 90%; 	margin: 2px 0px 6px 8px; 	width:95%;} 
+.ndatetime {font-size: 90%; display: inline-block; 	width:17%;vertical-align: top; 	background: #ffffff; margin-right:3px;text-align: right; }
+.nhtml_code {display: inline-block; 
+	width:78%; 	padding: 0px 0px 0px 8px; margin: 0px 0px 0px 8px; 	border-left: 6px solid white; 	border-bottom: 2px solid white; }
+
+p {margin:10px 30px 2px 10px;} /*font-size:10pt; было margin:10px 30px 2px 10px; если че*/
+
+.title {padding: 0px; margin:9px 2px 0px 1px;}
+.subtitle {font-size: 100%;margin:9px 17px 0px 110px;padding:0px 0px 0px 8px;}
+.description {padding: 10px 11px 2px 0px; margin: 0px 0px 0px 1px; font-size: 95%}
+
+.p_articles {font-size:12pt; padding:1px 2px 0px 10px; margin:0px 30px 2px 10px}
+.p_art {margin: 5px 20px;}
+ 
+.img_ogl {width:200px; float:left; margin:20px 13px 0px 7px;}
+
+.ptitle {font:bold 125% sans-serif; color:#363636; margin:10px 0px}
+.psubtitle {font:110% sans-serif; color:#363636}
+.pdescription {font-size:100%;}
+.dalee {font:90% sans-serif; color:#363636}
+
+.anons {border-left:6px solid #6495ED; padding:0px 4px 0px 4px; margin:8px 12px 8px 231px}
+.anons0 {border-left:6px solid #6495ED; padding:0px 12px 0px 12px; margin:8px 12px 9px 22px}
+.contacts {border-left:6px solid #6495ED; padding:0px 0px 0px 12px; margin:8px 12px 8px 12px}
+.anonstel {border-left:6px solid grey; padding:10px 12px 10px 12px; margin:8px 12px 8px 22px}
+.anonscolor {border-left:6px solid #6495ED; padding:0px 12px 0px 12px; margin:8px 12px 8px 22px}
+.anons_p {font-size:13pt; text-align:left}
+.contacts_p {font-size:13pt; text-align:left; margin:4px 2px 8px 1px; }
+.cent {text-align:center}
+.div_img {text-align:center}
+.img_art {margin:10px auto}
+.img_articles {width:360px; float:right; padding:10px 10px 12px 12px}
+.img_header {width:360px; float:left; padding:10px 10px 12px 12px}
+.banner240 {width:240px; padding:5px 0px 2px 0px}
+
+/*ВРЕЗКИ*/
+.vr {width:25%; background:#E8E8E8; padding:10px 0px 10px 10px; margin: 0px 12px 0px 1px}
+.vr_right {float:right; background:#E8E8E8; padding:10px 0px 10px 10px; margin: 0px 12px 0px 1px}
+.vr_h {font-size:84%; font-weight:bold; padding:0px 2px 4px 2px}
+.vr_p {font-size:80%; padding:0px 0px 0px 1px; margin: 1px 6px 2px 7px}
+
+.vrezka_div {float:right; width:25%; background:#E8E8E8; padding:0px 0px 0px 1px; margin: 0px 12px 0px 1px}
+.vrezka_h {font-size:10pt; font-weight:bold; padding:0px 2px 4px 2px}
+.vrezka_p {font-size:8pt; padding:0px 0px 0px 1px; margin: 1px 6px 2px 7px}
+.vrezka_img {width:40%; float:left; padding:0px 0px 0px 0px; margin:10px 10px 0px 10px}
+
+
+table td { border-bottom:0px; border-left:0px; background:white}
+
+/*Списки*/
+ul, ol {padding:0;margin:10px 0px 10px 50px;}
+
+ul {list-style: disc outside none}
+ol {list-style: decimal outside none}
+
+li {margin:10px 0px 10px 0px;}
+
+dl {padding:5px 70px 10px 0px;}
+
+dt {padding:4px 0px 2px 25px;	font-weight: bold;		color: #424242} /*font-size: 98%;	*/
+dd {padding:0px 0px 0px 35px;	text-align: justify;	}				/*font-size: 92%;*/
+
+
+ul.menu-ul {
+	margin:0; 
+	padding:0; 
+	display:inline-block;
+	background-color:#dcdcdc; 
+	background-repeat:no-repeat;
+	background-image:linear-gradient(#DCDCDC,#ccc);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#DCDCDC',endColorstr='#cccccc',GradientType=1); 
+	border-radius:4px; 
+	-webkit-border-radius:4px; 
+	-moz-border-radius:4px; 
+	width:1360px}
+
+
+ul.menu-ul .menu-li {float:left; list-style:none; border-right:1px solid #4f4f4f; position:relative}
+ul.menu-ul .menu-li .menu-a {color:#42413C; display:block; font-family:Arial; font-size:14px; padding:8px 20px 10px; text-decoration:none; border-right:1px solid #666; background:#dcdcdc}
+ul.menu-ul .menu-li .menu-a:hover {background-color:#dcdcdc; background-color:#999; color:#fff}
+ul.menu-ul .menu-li:first-child .menu-a:hover {border-radius:4px 0 0 4px; -webkit-border-radius:4px 0 0 4px; -moz-border-radius:4px 0 0 4px}
+ul.menu-ul .menu-li ul {display:none}
+ul.menu-ul .menu-li:hover ul {display:block; position:absolute; top:34px; border-radius:0 0 4px 4px; -webkit-border-radius:0 0 4px 4px; -moz-border-radius:0 0 4px 4px; background-color:#dcdcdc; z-index:1000; background-color:#999; color:#fff}
+ul.menu-ul .menu-li:hover ul li {float:none; width:150px; border-right:none; background-color:#999; color:#fff}
+ul.menu-ul.menu-li:hover ul .menu-li .menu-a {border-top:1px solid #4f4f4f; border-right:none; padding:6px 20px 8px; background-color:#999; color:#fff}
+ul.menu-ul .menu-li:hover ul .menu-li .menu-a:hover {background-color:#999; color:#fff}
+ul.menu-ul .menu-li:hover ul .menu-li:first-child .menu-a:hover {border-radius:0; -webkit-border-radius:0; -moz-border-radius:0}
+
+li.menu-li {margin:0px 0px 0px 0px;}	/*Отменяет общие отступы для списков, заданные выше в li*/
+
+ul.contacts {list-style: none outside none; margin:10px 0px 10px 100px;} /*для контактов */
+
+.left { float:left}
+.right {float:right}
+
+figure { /*http://shpargalkablog.ru/2010/08/podpis-kartinki-html.html*/
+	max-width: 50%;
+	box-shadow: 0 0 0 7px #fff, 0 0 3px 5px; /* рамка (она же отступ и тень) блока */
+	background-color: #fff;
+	}
+	
+figcaption
+	 {
+	font:normal 90% sans-serif;
+	color:rgba(5, 3, 3, 1);
+	text-align:center;
+	margin:9px 0px 2px 1px;
+	}
+	
+img.fig {width: 100%}	
+
+figure.left {margin: 15px 30px 10px 16px;}
+figure.right {margin: 15px 30px 9px 31px;}
+
+.cp_div { width:740px; height:150px; padding:0px 0px 5px 0px}
+.cp_img { width:100px; float:left}
+.cp_p { margin:-1px 0px 0px 114px; font-size:120%}
+.cp_p1 {font-size:75%}
+
+.small_otst1 {font-size: 10pt;margin:0px 34px 0px 254px;padding:0px 0px 0px 10px;}
+.small_otst2 {font-size: 10pt;margin:0px 0px 0px 20px;padding:0px 0px 0px 10px;}
+
+.stron {font-weight: bold}	
+.it {font-style: italic}	
+.center {text-align: center}
+.strong { font-weight:bold}
+.bold { font-weight:bold}
+
+.blue { font-weight:bold; color:#000080}
+.red { color:red; font-weight:bold}
+
+
+.bull {font-size: 12pt; color:red}
+.bull_blue {font-size: 8pt; color:#6495ED}
+#otst_blue {margin:0px 34px 0px 35px;}
+
+.zag1 {font-size:150%; padding:0px 0 0 5%; font-weight:900}
+.zag0 {background:#E8E8E8; height:100px; width:860px; margin:1px 2px 3px 4px}
+.zag2 { font-size:180%; vertical-align:middle; padding:19px 0px 0px 35px; margin:1px 0 0 15px; font-weight:900}
+.zag3 { font-size:120%; vertical-align:middle; padding:25px 0 0 35px; font-weight:900}
+.podzag { font-size:120%; vertical-align:top; padding:0px 0 0 10%; font-weight:900}
+.presentation { font-size:120%; color:red; font-style:italic; font-weight:900}
+
+
+ 
+#img01 { position:relative; width:310px; height:445px; left:0px; margin:10px 0px 0px 10px; border:1px; float:left}
+#txt1 { position:relative; margin:10px 10px 0px 0px; float:right; width:620px; height:445px}
+#txt310left { width:310px; height:445px; left:0px; margin:10px 0px 0px 10px; border:2px; float:left}
+#img2 { position:relative; float:right; width:620px; height:445px; margin:10px 10px 0px 0px}
+#txt3 { width:620px; height:445px; left:0px; margin:10px 0px 0px 10px; border:2px; float:left}
+#img3 { position:relative; float:right; width:310px; height:445px; margin:10px 10px 0px 0px}
+.dannye_izdania {border-left:10px solid #FFDEAD; margin:10px 15px; text-indent:0}
+.dannye_contacts {border-left:10px solid #D1EEEE; margin:10px 15px; text-indent:0}
+
+/*Справочник*/
+
+.element {padding:2px 0px 4px 0px; margin:1px 0px 3px 0px; width:100%; }
+
+.podzagolovok {margin:5px 10px}
+.yuridicheskiy_status {margin:5px 15px}
+.adres {margin:5px 0px 5px 20px}
+.adres_table {margin:5px 0px 5px 20px}
+.podrazdelenie_filial {margin:5px 0px 5px 10px}
+.podrazdelenie_filial_table {margin:5px 0px 5px 10px}
+.litso_dolzhnost {margin:5px 0px 5px 40px}
+.litso_dolzhnost_table {margin:5px 0px 5px 40px}
+
+.litso_fio {margin:5px 0px 5px 40px; font-style:italic}
+.telfaxmob {font-weight:normal; margin:5px 10px 5px 0px}
+.rezhimrabotystroka {font-style:italic; padding:5px 0px 5px 40px}
+.tel {text-align:right; padding:5px 0px 5px 0px; font-weight:bold}
+.skype {text-align:right; padding:5px 0px 5px 0px;}
+.sayt, .elpochta, .skype_table, .icq_table {text-align:right; padding:5px 0px 5px 0px}
+.sayt_, .elpochta_, .skype_table_, .icq_table_, .tel_ {text-align:right; padding:5px 0px 5px 0px}
+
+.elpochta_a { color:#000}
+.elpochta_a:hover { color:#36c}
+
+.sayt_a,
+.navy_a {color: #000}
+.sayt_a:hover,
+.navy_a:hover {color: #36c}
+.sayt_a:visited,
+.navy_a:visited  {color: #000}
+
+.dop_informatsiya {padding-left:30px; font-style:italic}
+.table_tel {width:96%; margin-left:25px}
+
+.podzagolovok {margin:5px 10px}
+.yuridicheskiy_status {margin:5px 15px}
+.adres {margin:5px 0px 5px 20px}
+.adres_table {margin:5px 0px 5px 20px}
+.podrazdelenie_filial {margin:5px 0px 5px 10px}
+.podrazdelenie_filial_table {margin:5px 0px 5px 10px}
+
+table {width:800px; margin-left:25px}
+tr {}
+td {}
+.navy {padding:1px 2px 3px 4px; margin:1px 10px 3px 10px}
+
+.img_center {margin:20px 11px 12px 13px}
+.img_left {float:left; margin:10px 10px 10px 10px}
+.img_right {float:right; margin:10px 10px 10px 10px}
+
+.img {padding:0px}
+
+.footer_a { 
+ font-size: 90%; 
+ font-family: Verdana, Arial, Helvetica, sans-serif; 
+ color: #828282;
+ }
+ .footer_a:hover,
+ .footer_a:active,
+ .footer_a:focus { 
+ color: #363636;
+ }
+ /**position:relative; float:right; height: 95px; */
+ .footer {width:100%; background:#E8E8E8; padding:12px 0px 10px 1px; margin:0px 0px 10px 1px; background-image:linear-gradient(#DCDCDC,#ccc); clear:both}
+ .footer1 {margin: 0px 0px 0px 60px; padding: 0px 0px 0px 25px; display: inline-block; border-left: 2px solid grey;float:left;}
+ .footer2 {margin: 0px 0px 0px 60px; padding: 0px 0px 0px 25px; display: inline-block; border-left: 2px solid grey;float:left;}
+ .footer3 {margin: 0px 0px 0px 350px; padding: 0px 0px 0px 10px; display: inline-block; border-left: 2px solid grey;}
+ 
+ 

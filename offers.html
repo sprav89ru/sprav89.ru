@@ -1,0 +1,52 @@
+<style>
+.block {margin: 27px 0 0 0px;}
+.title {margin: 16px 0 0 1px; font-size: 130%; color: #3E3E3F; font-weight: bolder; }
+.img_og {margin: 10px 40px 0px 0px}
+.subtitle {font-size: 125%; }
+.description {font-size: 100%; padding: 0px 11px 0px 0px; margin: 20px 0px 0px 1px;}
+.border_{border-left: solid #8BADFE 6px; margin: 0px 0px 0px 221px ; padding: 0px 0px 0px 8px }
+</style>
+
+<?php
+if (defined('PATH')==FALSE) {require 'login.php';}
+?> 
+<!-- //															ИЗДАНИЯ -->
+<div class="block block1"> <!-- BLOCK -->
+	<div class="block_title"> <!-- Заголовок ИЗДАНИЯ-->
+	<a href="" class="block_title_a">Издания</a>
+	</div>	<!-- Заголовок ИЗДАНИЯ-->
+
+<?php
+	$offerts = arts_array_by_content_alias('offers');
+	foreach ($offerts as $a) { 
+	$linkart = PATH.'/?art='.$a['alias'];
+	$linkdir = PATH.'/'.$a['catalog'].'/';
+	//echo $a['alias'];
+?>	
+	
+	<div class="ogl"> <!-- <div class="ogl"> -->
+		
+		<a href="<?php echo $linkart; ?>">
+		<img  class="img_ogl" id="img_ogl" src="<?php echo $linkdir.'/'.$a['img_ogl'] ;?>" alt="<?php echo $a['title']; ?>" />
+		</a>
+		<a href="<?php echo $linkart; ?>"><p class="title"><?php echo $a['title']; ?></p></a>
+
+		<?php
+		if (trim($a['subtitle']) != '') { 
+		echo '<p class="subtitle">'.$a['subtitle'].'></p>';
+		} 
+		?>
+		<div class = "border_">
+		<p class="description"><?php echo $a['description']; ?></p>
+		</div>
+		<div class="ogl_sub">
+		<a class="a_art" href="<?php echo $linkart; ?>">&#62;&#62;&#62;&#62;</a>
+		</div>
+
+	</div>	 <!-- <div class="ogl"> -->
+
+<?php
+}
+?>
+
+</div>	 <!-- BLOCK -->

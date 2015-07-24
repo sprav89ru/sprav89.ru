@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XML, объекты и массивы в PHP</title>
+<style type="text/css">
+textarea {
+    width: 30%; /* Ширина поля в процентах */
+    height: 200px; Высота поля в пикселах */
+     /* resize: none; Запрещаем изменять размер */
+   } 
+ p {margin: 10px 0px 5px 1px;}  
+
+.back_site {background:#B9CDF3} 
+.back_xml {background:#ECF997} 
+.back_php {background:#F6C3F8} 
+
+</style>
+
+<h1>XML, объекты и массивы в PHP. Часть 1</h1>
+<p><a href="PHP_XML_objects_arrays_02.html">Часть 2</a> — <a href="PHP_XML_objects_arrays_03.html">Часть 3</a></p>
+
+Информация:<br/>
+<a href="http://www.ibm.com/developerworks/ru/library/x-xmlphp1/index.html">www.ibm.com</a><br/>
+<a href="http://lifeexample.ru/php-primeryi-skriptov/rabota-s-xml-v-php.html">lifeexample.ru</a><br/>
+<a href="http://www.phptown.ru/php/simpleXML.php">www.phptown.ru</a><br/>
+
+
+
+
+<p>Имеем XML (content.xml), bмеем код PHP, что выводит:</p>
+
+<textarea class = "back_xml">
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> -->
+<content>
+
+	<parameter>
+		<name>Статьи по Акции</name>
+		<alias>Статья Акция 1</alias>
+		<alias>Статья Акция 2</alias>
+	</parameter>
+
+	<group>
+		<name>Статьи на Главной</name>
+		<alias>Статья Главная 1</alias>
+		<alias>Статья Главная 2</alias>
+	</group>
+
+	<group>
+		<name>Статьи на Второй</name>
+		<alias>Статья Вторая 1</alias>
+		<alias>Статья Вторая 2</alias>
+	</group>
+
+</content>
+
+</textarea>
+
+
+
+<textarea class="back_php">
+<? 
+	echo '<h1>Это файл content.php </h1>';
+	$xml = simplexml_load_file ('content.xml');
+	print_r($xml);
+	//echo $xml;
+	echo '—————————————————————<br/>';
+
+	echo $xml;echo '<br/>';
+	echo gettype($xml);echo '<br/>';
+	echo get_class($xml);echo '<br/>';
+	echo '—————————————————————<br/>';
+
+	$array = (array) $xml; 
+	echo $array;echo '<br/>';
+	echo gettype($array);echo '<br/>';
+	print_r($array);
+	echo '—————————————————————<br/>';
+
+	foreach($array as $key => $value) { // $key - индекс элемента массива, $value - значение элемента массива
+   	echo "[{$key}] => {$value} <br/>";
+	
+?> 
+</textarea>
+
+
+
+<textarea class="back_site">
+SimpleXMLElement Object
+( [parameter] => SimpleXMLElement Object 
+( [name] => Статьи по Акции [alias] => Array ( [0] => Статья Акция 1 [1] => Статья Акция 2 ) ) 
+[group] => Array ( [0] => SimpleXMLElement Object 
+( [name] => Статьи на Главной [alias] => Array ([0] => Статья Главная 1 [1] => Статья Главная 2 ) ) 
+[1] => SimpleXMLElement Object
+( [name] => Статьи на Второй [alias] => Array ( [0] => Статья Вторая 1 [1] => Статья Вторая 2 ) ) ) )
+—————————————————————
+
+object
+SimpleXMLElement
+—————————————————————
+Array
+array
+Array ( [parameter] => SimpleXMLElement Object (
+[name] => Статьи по Акции [alias] => Array ( [0] => Статья Акция 1 [1] => Статья Акция 2 ) )
+[group] => Array ( [0] => SimpleXMLElement Object (
+[name] => Статьи на Главной [alias] => Array ( [0] => Статья Главная 1 [1] => Статья Главная 2 ) )
+[1] => SimpleXMLElement Object (
+[name] => Статьи на Второй [alias] => Array ( [0] => Статья Вторая 1 [1] => Статья Вторая 2 ) ) ) )
+—————————————————————
+[parameter] =>
+[group] => Array
+—————————————————————
+
+object
+SimpleXMLElement
+
+</textarea>
+
+<p>То есть SimpleXMLElement Object преобразуем в массив.<br/>
+Если [parameter] встречается один раз, он пока неизвестно что.<br/>
+Если два раза, как [group], тогда массив.
+ </p>
+
+ <p>
+ 	Проверим — введем второй [parameter] — так и есть:<br/>
+ 	<code> 
+ 	[parameter] => Array<br/>
+	[group] => Array 
+	</code>
+ </p>
+
+ <p> Какой тип, если он один? Выводит: тип $key в обоих случаях string, но если группа — array, если один — object, тип объекта — SimpleXMLElement</p>
+ 
+<textarea class="back_php">
+foreach($array as $key => $value) { // $key - индекс элемента массива, $value - значение элемента массива
+//echo "[{$key}] => {$value} <br/>";
+echo '$key = '.$key.' => $value = '.$value.' gettype($key) '.gettype($key).' gettype($value) '.gettype($value);
+if (gettype($value) == 'object') {echo ' get_class ($value) = '. get_class ($value);}
+echo '<br/>';
+}
+</textarea>
+
+<textarea class="back_site">
+$key = parameter => $value = gettype($key) string gettype($value) object 
+get_class ($value) = SimpleXMLElement
+$key = group => $value = Array gettype($key) string gettype($value) array
+</textarea>
+
+<br/>
+<p>Строки массива тоже, видимо, object, тип — SimpleXMLElement</p>
+
+<p>Как работать с объектом без преобразования в массив?</p>
+<p>Если проще с массивом, то как?</p>
+
+<p><a href="PHP_XML_objects_arrays_02.html">Далее</a></p>
+
+<a href="PHP_XML_objects_arrays_02.html">Часть 2</a> — <a href="PHP_XML_objects_arrays_03.html">Часть 3</a></p>

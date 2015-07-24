@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+	.compl	{margin: 0px 5px 40px 5px; padding: 0px 0px  0px 5px;}  /*background-color: red; ; border-top: solid 1px grey;*/
+	.share_buttons	{margin: 0px 0px  0px 1px;width:100%;float: left;}  /*border: solid 1px grey; background-color: blue;*/
+	.compl_other {margin: 0px 0px  0px 1px;background-color: green;width:35%;float: left;}	
+</style>
+
+<div class = "compl">
+
+	<div class = "share_buttons">
+	<?php
+		if ( isset($_GET['new']) OR isset($_GET['art']) OR isset($_GET['org']) ) { 
+	echo '<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki"></div>';
+	}
+	?>
+	</div>
+
+	<div class = "compl_other">
+		<!-- Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet -->
+	</div>
+
+	<div class = "compl_other">
+		<!-- Lorem ipsum dolor sit amet -->
+	</div>
+
+</div>
+

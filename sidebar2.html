@@ -1,0 +1,85 @@
+<style>
+	#img_art{width:29%;float:left; vertical-align:middle; margin: 3% 5% 0% 0%; }
+	#title-sb2 {font-size: 108%;text-align: left;}
+	.webkit #title-sb2 {font-size: 106%;}
+	#votes {font-size: 80%;text-align: right; margin: 0% 0% 0% 1%;}	
+	#votes_color {color: red;}	
+	.wrap_sb2 { border-bottom:1px solid #CFCFCF; padding:0px 0px 10px 0px;margin:0px 0px 10px 0px;} /*background-color: grey;*/
+	.wrap_sb2_01 {font-weight: bold; font-size: 110%;margin:0px 0px 2px 0px;}
+	.wrap_sb2_reg {border-bottom:1px solid #CFCFCF; font-weight: bold; font-size: 100%;padding:0px 0px 10px 0px;margin:0px 0px 10px 0px;}
+
+	.search_sb2 {width:86%; float:left;}
+	.search_sb2_img {width:24px; }
+	/*width: 200px*/
+
+</style>
+
+<div class="l-sidebar sidebar2">
+
+<div class="wrap wrap_sb2" >
+	<!-- Поиск -->
+	<form method="get" action="<?php echo PATH; ?>/?search="> 
+	<input class = "search_sb2" name="search" value="" placeholder="Поиск">
+	<input class = "search_sb2_img" src="<?php echo PATH; ?>/img/search.png" type="image">
+	</form>
+
+</div>
+
+
+<div class="wrap wrap_sb2_reg">
+	<a href="<?php echo PATH ;?>/?reg=registration" class= "a_art">Регистрация</a> | <a href="<?php echo PATH ;?>/?reg=enter" class= "a_art">Вход</a>
+</div>
+
+
+<a href="http://www.7zennosti.com/"><img class="sidebar2_img" src="<?php echo PATH; ?>/sprav/21-11-prochie-uslugi/slepochki-detskie/7zennosti.jpg" alt="Семейные ценности. www.7zennosti.com" /></a>
+
+
+<div class="wrap wrap_sb2">
+
+	<div class="wrap wrap_sb2_01 ogl">
+		<a class= "a_art" href="<?php echo PATH;?>/?art=action01" style="text-align:center;padding:0px 0px 0px 1px;">Конкурс-акция<br />«Сделай себе рекламу и заработай на этом!»</a>
+	</div>
+
+<?php 
+	$arts = arts_array_by_content_alias("arts_for_action");
+	foreach ($arts as $a) {
+	
+	$link_art = PATH.'?art='.$a['alias'];
+	$link_img_ogl = PATH.'/'.$a['catalog'].'/'.$a['img_ogl'];
+
+	echo '<div class = "ogl">';
+	echo '<a href="'.$link_art.'"><img id="img_art" src="'.$link_img_ogl.'" alt="'.$a['title'].'" /></a>';
+	echo '<a class = "a_art" href="'.$link_art.'"><p id="title-sb2">'.$a['title'].'</p></a>';
+	// echo '<p id="subtitle-sb2">'.$a['subtitle'].'</p>'; 
+	switch ($a['alias']) { 
+		case 'torgovyy-zal-1': $votes = 6; break;
+		case 'Avtodom': $votes = 1; break;
+		case 'komfort-01': $votes = 1; break;
+		default: $votes = 0;	break;
+	}
+	echo '<p id="votes">Голосов: <span id="votes_color">'.$votes.'</span></p>';
+	echo '</div>';
+	
+
+
+	// echo '<div class="ogl_sub">';
+	// echo '<a href="'.$link_art.'"><span class="dalee">&#62;&#62;&#62;&#62;&#62;</span></a>';
+	// echo '</div>';
+	
+	}
+?>	
+</div>
+
+<a href="<?php echo PATH; ?>/?org=Спецавтострой_ООО"><img class="sidebar2_img" src="<?php echo PATH; ?>/sprav/11-04-stroitelnye-materialy/specavtostroy-ooo.jpg" alt="ООО Спецавтострой" /></a>
+
+<a href="<?php echo PATH; ?>/?art=sibregiongazstroy"><img class="sidebar2_img" src="<?php echo PATH; ?>/articles/organisations/sibregiongazstroy/nottell.jpg" alt="ООО «Сибрегионгазстрой»" /></a>
+
+<a href="<?php echo PATH; ?>/?art=centr-prava"><img class="sidebar2_img" style="border: 1px solid #999999" src="<?php echo PATH; ?>/articles/organisations/centr-prava/img_ogl.jpg" alt="Центр Права" /></a>
+
+<a href="<?php echo PATH; ?>/?org=Слепочки_детские"><img class="sidebar2_img" src="<?php echo PATH; ?>/articles/organisations/slepochki/img_ogl.jpg" alt="Слепочки детские" /></a>
+
+<a href="<?php echo PATH; ?>/?art=kristi"><img class="sidebar2_img" src="<?php echo PATH; ?>/articles/organisations/kristi/img_ogl.jpg" alt=""Магазин Кристи" /></a>
+
+<a href="<?php echo PATH; ?>/?art=mapwall"><img class="sidebar2_img" style="border: 1px solid #999999" src="<?php echo PATH; ?>/articles/editions/mapwall/map_header.jpg" alt=""Карта" /></a>
+
+</div>

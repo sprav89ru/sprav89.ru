@@ -1,0 +1,2 @@
+User-agent: *
+sitemap: http://sprav89.ru/sitemap.xml

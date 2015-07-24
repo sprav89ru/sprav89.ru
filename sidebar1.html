@@ -1,0 +1,59 @@
+<div class="l-sidebar sidebar1">
+
+<style type="text/css">
+/*#wrap_sb1_1 {
+	padding: 4px 0px 6px 0px;
+	color: #000;
+	border-radius: 12px;
+	background-color: #fff; 
+	
+}*/
+</style>
+
+<div class="wrap">
+	<a href="<?php echo PATH;?>/?org="><img src="<?php echo PATH;?>/img/obl_spr.jpg" alt="Справочник" /></a>
+</div>
+
+<div class="wrap">
+	<a href="<?php echo PATH;?>/?option=contacts"><img src="<?php echo PATH;?>/img/obyavl.png" alt="Объявление о поиске сотрудников" /></a>
+</div>
+
+<div class="wrap" style="font-weight: bold;">
+	<a class= "a_art" href="<?php echo PATH;?>/?art=instr_raspr" style="text-align:center;padding:0px 0px 0px 1px;">Инструкция для распространителей</a>
+</div>
+
+<div class="backing" style="margin: 8px 0px 9px 0px;">  
+	<p>Мы в социальных сетях:</p>
+</div>
+
+<div class = "wrap">
+	<div id="ok_group_widget"></div>
+	<script>
+	!function (d, id, did, st) {
+	  var js = d.createElement("script");
+	  js.src = "http://connect.ok.ru/connect.js";
+	  js.onload = js.onreadystatechange = function () {
+	  if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+	    if (!this.executed) {
+	      this.executed = true;
+	      setTimeout(function () {
+	        OK.CONNECT.insertGroupWidget(id,did,st);
+	      }, 0);
+	    }
+	  }}
+	  d.documentElement.appendChild(js);
+	}(document,"ok_group_widget","52272479666382","{width:215,height:335}");
+	</script>
+</div>
+
+<div class = "wrap">
+	<script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
+	<!-- VK Widget -->
+	<div id="vk_groups"></div>
+	<script type="text/javascript">
+	VK.Widgets.Group("vk_groups", {mode: 0, width: "215", height: "200", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 27661134);
+	</script>
+</div> <!-- <div class = "wrap"> -->
+
+</div> <!-- <div class="sidebar1"> -->
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XML, объекты и массивы в PHP</title>
+<style type="text/css">
+textarea {
+    width: 30%; /* Ширина поля в процентах */
+    height: 200px; Высота поля в пикселах */
+     /* resize: none; Запрещаем изменять размер */
+   } 
+ p {margin: 10px 0px 5px 1px;}  
+
+.back_site {background:#B9CDF3} 
+.back_xml {background:#ECF997} 
+.back_php {background:#F6C3F8} 
+
+</style>
+
+<h1>XML, объекты и массивы в PHP. Часть 2</h1>
+
+<p><a href="PHP_XML_objects_arrays_01.html">Часть 1</a> — <a href="PHP_XML_objects_arrays_03.html">Часть 3</a></p>
+
+<p>Упростим задачу, нечего в дебри влезать, пусть в XML будут параметры только одного типа [parameter]<br/>
+но их два, в каждом name и по два alias</p>
+<p>Этого достаточно. Код выводит два объекта SimpleXMLElement:</p>
+
+<textarea class = "back_xml">
+<?xml version="1.0" encoding="UTF-8"?> <!-- <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> -->
+<content>
+	<parameter>
+		<name>Статьи по Акции</name>
+		<alias>Статья Акция 1</alias>
+		<alias>Статья Акция 2</alias>
+	</parameter>
+
+	<parameter>
+		<name>Статьи на Главной</name>
+		<alias>Статья Главная 1</alias>
+		<alias>Статья Главная 2</alias>
+	</parameter>
+</content>
+</textarea>
+
+<textarea class = "back_php">
+echo '<h1>Это файл content.php </h1>';
+$xml = simplexml_load_file ('content.xml');
+echo '—————————————————————<br/>';
+foreach($xml as $key => $value) { // $key - индекс элемента массива, $value - значение элемента массива
+echo "[{$key}] => [{$value}] <br/>";
+echo '$key = '.$key.' => $value = '.$value.' ; gettype($key) = '.gettype($key).' ; gettype($value) = '.gettype($value).' ; get_class ($value) = '. get_class ($value);
+echo '<br/>';
+</textarea>
+
+<textarea class = "back_site">
+[parameter] => [ ]
+$key = parameter => $value = ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[parameter] => [ ]
+$key = parameter => $value = ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+</textarea>
+
+<p>Попробуем вставить имя в parameter:</p>
+<p>Ничего не изменилось, надо как-то вытаскивать атрибут, но это потом:</p>
+
+<textarea class = "back_xml">
+<?xml version="1.0" encoding="UTF-8"?> <!-- <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> -->
+<content>
+	<parameter name = "Статьи по Акции">
+		<alias>Статья Акция 1</alias>
+		<alias>Статья Акция 2</alias>
+	</parameter>
+
+	<parameter name = "Статьи на Главной">
+		<alias>Статья Главная 1</alias>
+		<alias>Статья Главная 2</alias>
+	</parameter>
+</content>
+</textarea>
+
+<textarea class="back_site">
+[parameter] => [ ]
+$key = parameter => $value = ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[parameter] => [ ]
+$key = parameter => $value = ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+</textarea>
+
+<p>Не стоит пока усложнять структуру.</p>
+<p>Возвращаемся к прежнему, по одному name и по два alias.</p>
+<p>Пишем скрипт, продолжая работать с SimpleXMLElement.<br/>
+Итак, возвращает два объекта SimpleXMLElement. 
+<p>Пишем для каждого то, что писали в целом по всему:</p>
+<p>Выводит по каждому объекты SimpleXMLElement:</p>
+
+<textarea class="back_php">
+foreach($xml as $key => $value) { 
+	foreach($value as $key => $value) {
+echo "[{$key}] => [{$value}] <br/>";
+echo '$key = '.$key.' => $value = '.$value.' ; gettype($key) = '.gettype($key).' ; gettype($value) = '.gettype($value).' ; get_class ($value) = '. get_class ($value);
+echo '<br/>';
+		}
+	}
+</textarea>
+
+
+<textarea class="back_site">
+[name] => [Статьи по Акции]
+$key = name => $value = Статьи по Акции ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[alias] => [Статья Акция 1]
+$key = alias => $value = Статья Акция 1 ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[alias] => [Статья Акция 2]
+$key = alias => $value = Статья Акция 2 ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[name] => [Статьи на Главной]
+$key = name => $value = Статьи на Главной ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[alias] => [Статья Главная 1]
+$key = alias => $value = Статья Главная 1 ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+[alias] => [Статья Главная 2]
+$key = alias => $value = Статья Главная 2 ; gettype($key) = string ; gettype($value) = object ; get_class ($value) = SimpleXMLElement
+</textarea>
+
+<p>Ну вот и все. Есть ключи (name и alias), есть значения "Статьи ... " и "Статья Х ... ", им соответствующие.</p>
+<p>Достаточно задать фильтр-условие по параметру name и вывести, что надо.<br/>
+Кстати, имеет значение, какими кавычками пользоваться...</p>
+
+Еще раз: <br/> 
+<textarea class="back_php">
+<?php
+$xml = simplexml_load_file ('content.xml');
+echo '—————————————————————<br/>';
+
+foreach($xml as $key => $value) { 
+	echo '$key = '.$key.' => $value = '.$value;
+	echo '<br/>';
+	foreach($value as $key_ => $value_) {
+		echo '$key_ = '.$key_.' => $value_ = '.$value_;
+		echo '<br/>';
+		}
+	}
+?>
+</textarea>
+
+<textarea class="back_site">
+$key = parameter => $value =
+$key_ = name => $value_ = Статьи по Акции
+$key_ = alias => $value_ = Статья Акция 1
+$key_ = alias => $value_ = Статья Акция 2
+$key = parameter => $value =
+$key_ = name => $value_ = Статьи на Главной
+$key_ = alias => $value_ = Статья Главная 1
+$key_ = alias => $value_ = Статья Главная 2
+</textarea>
+
+<p>Но! Там возникает проблема отсеивания первого параметра, по которому ставится условие и т.д.</p>
+<p>В итоге оказалось проще все-таки ввести name в параметр (<a href="http://www.php-spravka.ru/showall/13/0/">отсюда</a>)</p>
+<p>Тем более, что и по смыслу так правильнее.</p>
+
+
+<textarea class = "back_xml">
+<content>
+	<parameter name="Статьи по Акции">
+		<alias>Статья Акция 1</alias>
+		<alias>Статья Акция 2</alias>
+	</parameter>
+
+	<parameter name="Статьи на Главной">
+		<alias>Статья Главная 1</alias>
+		<alias>Статья Главная 2</alias>
+	</parameter>
+</content>
+</textarea>
+
+<textarea class="back_php">
+$xml = simplexml_load_file ('content.xml');
+echo '—————————————————————<br/>';
+
+foreach($xml as $key => $value) { 
+	echo '$key = '.$key.' ; $value = '.$value.' ; $value[name] = '.$value['name'];echo '<br/>';
+	if ($value['name'] == 'Статьи по Акции') {
+		foreach ($value -> children() as $any) {
+		echo ' $any  = '.$any;	echo '<br/>';
+		}
+	}
+}
+</textarea>
+
+<textarea class="back_site">
+$key = parameter ; $value = ; $value[name] = Статьи по Акции
+$any = Статья Акция 1
+$any = Статья Акция 2
+$key = parameter ; $value = ; $value[name] = Статьи на Главной
+</textarea>
+
+
+<p><a href="PHP_XML_objects_arrays_01.html">Часть 1</a> — <a href="PHP_XML_objects_arrays_03.html">Часть 3</a></p>

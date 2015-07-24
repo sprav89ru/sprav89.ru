@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css"></style>
+
+</head>
+
+<body>
+	<h1>It works!!!</h1>
+	<h3>it's an index.html</h3>
+
+<?php echo "PATH = ".PATH ?>	
+<!--
+HTML курс Евгения Попова 
+http://www.youtube.com/playlist?list=PLB86E02CE3735E3B6
+-->
+
+<form acrion = "<?php echo PATH; ?>/files/forms.php" method="GET" name="form1">
+
+<p><label>Введите Ваше имя (макс. 10 символов):<input type="text" name="password" size="30" maxlength="10"></label></p>
+<!-- label - для активации элемента уже при щелчке по заголовку 
+еще атрибуты size - по умолчанию 20 символов
+ограничение на количестов символов maxlength="10" -->
+<p>
+<label>Введите Ваш пароль (макс. 10 символов):<input type="password" name="text" size="30" maxlength="10"></label>
+</p>
+<!-- для пароля type = "pass" -->
+<p>Любите ли Вы экономить время?</p>
+
+<!-- радиокнопки: <label> - для варианта ответа -->
+<p>
+	<label>Да<input type="radio" name="time" value="yes" checked></label>
+	<label>Нет<input type="radio" name="time" value="no"></label>
+</p>
+<!-- то же имя -->
+<!-- Автомтическая активация одной из кнопок checked  -->
+
+<!-- ЧЕКБОКСЫ -->
+<p>Какими инструментами для экономии времени вы пользуетесь?</p>
+<p>
+	<label><input type="checkbox" name="ez" disabled>Ежедневник</label>
+	<label><input type="checkbox" name="hr" checked>Хронометраж</label>
+	<label><input type="checkbox" name="sn">Свои наработки</label>
+</p>
+
+<!-- SELECT -->
+<p><label for="sleep">Сколько часов в день Вы спите?</label></p>
+<p>
+	<select name="sleep" size = "5" multiple id="sleep">
+	<option>5</option>
+	<option>6</option>
+	<option value = "seven">7</option>
+	<option selected>8</option>
+	<option>8+</option>
+	</select>
+</p>
+<!-- Размер size = "3" будет показано 3 элемента
+multiple — множественный выбор 
+value = "seven" — значение для отправки -->
+
+<!-- TXT AREA -->
+<p><label for="text">Поделитесь наработками в экономии времени</label></p>
+<p><textarea name ="text" cols="50" rows="6" id="text" readonly>Тестовый текст...</textarea></p>
+<!-- атрибут label for — для какого элемента по id он задается, здесь для id = "text"
+то же для select-->
+
+<!-- BUTTON  
+4 вида кнопок: 1) Отправка 2) Очистка 3) Изображение 4) Просто кнопка --> 
+
+<p><input type="submit" name="submit" value="Отправить"></p>
+<p><input type="reset" name="reset" value="Сброс"></p>
+<p><input type="image" src="<?php echo PATH; ?>/files/img/button.png" name="imageButton"></p>
+<p><input type="button" name="button" value="Кнопка"></p>
+
+<!-- FIELDSET набор полей -->
+<fieldset>
+	<legend>Ввод личных данных</legend>
+	<p>Данные 1</p>
+	<p>Данные 2</p>
+</fieldset>
+
+<!--  Урок 20 Блокировка и только чтение
+disabled блокирует элемент 
+readonly -->
+
+<!-- Урок 21 Обработчик -->
+</form>
+</body>
+</html>

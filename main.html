@@ -1,0 +1,133 @@
+<style>
+	#block1 {width:100%;float:left;padding:0px 0px 30px 0px;} /*bl_*/
+	#block2 {width:49.4%;float:left;margin:0px 1.2% 0px 0px;padding:0px 0px 0px 0px;} /*bl_*/
+	#block3 {width:49.4%;float:left;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;} /*bl_*/
+	#block4 {width:100%;float:left;margin:30px 0px 15px 1px;} /*bl_*/
+	#img_ogl{width:115px;}  /*float:left; margin: 0 0 0 1px;*/
+</style>
+
+<div class="block" id="block1"> <!-- BLOCK для Новости -->
+
+<?php
+if (defined('PATH')) {    }
+    else {	require 'login.php';		}
+	//НОВОСТИ на главной;	
+		$_POST['items_for_page']='news_for_main';
+		include ('news.html');
+	//НОВОСТИ на главной;	
+
+	// <!--		СТАТЬИ на главной	 -->
+	$linkarts='href="'.PATH.'?art="';//ссылка на раздел Статьи
+?>
+	
+</div> <!-- BLOCK для Новости -->	
+
+<div class="block" id="block2"> <!-- BLOCK -->
+	<div class="block_title"> <!-- Заголовок СТАТЬИ-->
+	<a <?php echo $linkarts;?> class="block_title_a">Статьи</a>
+	</div>	<!-- Заголовок СТАТЬИ-->
+
+<?php
+	$arts = arts_array_by_content_alias('arts_for_main');
+	foreach ($arts as $a) { 
+	$linkart = PATH.'/?art='.$a['alias'];
+	$linkdir = PATH.'/'.$a['catalog'].'/';
+	//echo $a['alias'];
+?>	
+	<style>
+	#ogl {padding: 0px 0px 0px 0px}
+	</style>
+
+	<div class="ogl" id="ogl">
+
+		<a href="<?php echo $linkart; ?>">
+		<img  class="img_ogl" id="img_ogl" src="<?php echo $linkdir.'/'.$a['img_ogl'] ;?>" alt="<?php echo $a['title']; ?>" />
+		</a>
+		<p class="title"><a class="a_art" href="<?php echo $linkart; ?>"><?php echo $a['title']; ?></a></p>
+		<p class="subtitle"><?php echo $a['subtitle']; ?></p>
+		<!-- <p class="description"><?php //echo $a['description']; ?></p> -->
+		<div class="ogl_sub">
+		<a class="a_art" href="<?php echo $linkart; ?>">&#62;&#62;&#62;&#62;</a>
+		</div>
+
+	</div>	 <!-- <div class="ogl"> -->
+
+<?php
+}
+?>
+
+</div>	 <!-- BLOCK -->
+
+<!-- //															ИЗДАНИЯ -->
+<div class="block" id="block3"> <!-- BLOCK -->
+	<div class="block_title"> <!-- Заголовок ИЗДАНИЯ-->
+	<a href="<?php echo PATH.'/?option=offers';?>" class="block_title_a">Издания</a>
+	</div>	<!-- Заголовок ИЗДАНИЯ-->
+
+<?php
+	$offerts = arts_array_by_content_alias('offers_for_main');
+	foreach ($offerts as $a) { 
+	$linkart = PATH.'/?art='.$a['alias'];
+	$linkdir = PATH.'/'.$a['catalog'].'/';
+	//echo $a['alias'];
+?>	
+	
+	<div class="ogl"> <!-- <div class="ogl"> -->
+		
+		<a href="<?php echo $linkart; ?>">
+		<img  class="img_ogl" id="img_ogl" src="<?php echo $linkdir.'/'.$a['img_ogl'] ;?>" alt="<?php echo $a['title']; ?>" />
+		</a>
+		<p class="title"><a class="a_art" href="<?php echo $linkart; ?>"><?php echo $a['title']; ?></a></p>
+
+		<?php
+		if (trim($a['subtitle']) != '') { 
+		echo '<p class="subtitle">'.$a['subtitle'].'></p>';
+		} 
+		?>
+
+		<p class="description"><?php echo $a['description']; ?></p>
+		<div class="ogl_sub">
+		<a class="a_art" href="<?php echo $linkart; ?>">&#62;&#62;&#62;&#62;</a>
+		</div>
+
+	</div>	 <!-- <div class="ogl"> -->
+
+<?php
+}
+?>
+
+</div>	 <!-- BLOCK -->
+
+
+<div class="block" id="block4"> <!-- BLOCK 4  СПРАВОЧНИК --> 
+	<div class="block_title"> <!-- Заголовок ИЗДАНИЯ-->
+	<a <?php echo 'href="'.PATH.'?org="' ;?>" class="block_title_a">Справочник</a>
+	</div>	<!-- Заголовок ИЗДАНИЯ-->
+
+
+<!-- echo '<div class=group2>';
+$link='href="'.PATH.'/?org="';
+echo '<a '.$link.' class=a_group2>Справочник</a>';
+echo '</div>';	//Выводим справочник
+ -->
+<?php
+//Выводим справчоник
+	$mysqli = mysqli_connect(HOST,USER,PASSWORD,DB_SPRAV89);
+	mysqli_query($mysqli,"SET NAMES utf8");
+	
+	$q1 = 'SELECT * FROM `roditel1` ORDER BY `kod`';
+	$res1 = mysqli_query($mysqli, $q1) or die (mysqli_error());
+	
+	while ($row = mysqli_fetch_assoc($res1))
+		{
+		$format_vyvoda_strok='roditel1';
+		$kod=$row['kod'];
+		$id=$row['id'];
+		$naimenovanie_na_pechat=$row['naimenovanie_na_pechat'];
+		$name=$row['name'];
+		//$link='spravochnik.php?zn='.$zn.'&idr='.$id;
+		$link1='href="'.PATH.'/?org='.$row['alias_ru'].'" ';
+		echo '<div class="group2"><a class="a_group2" '. $link1 .'>'.  $kod . '. ' . $naimenovanie_na_pechat .'</a></div>';
+		}
+?>
+</div><!-- BLOCK -->

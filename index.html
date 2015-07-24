@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- файл index.html<br> -->
+
+<?php
+	require_once 'login.php';
+	$_POST['source']=PATH.'/?option=sprav';
+	require 'funcs.php';
+?>
+
+<head>
+	<?php include 'head.html';	?>
+</head>
+
+<body>
+
+<?php include_once("analyticstracking.php"); ?>
+
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">
+var _tmr = _tmr || [];
+_tmr.push({id: "2563104", type: "pageView", start: (new Date()).getTime()});
+(function (d, w) {
+   var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
+   ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+   var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+   if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window);
+</script><noscript><div style="position:absolute;left:-10000px;">
+<img src="//top-fwz1.mail.ru/counter?id=2563104;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+</div>
+</noscript>
+<!-- //Rating@Mail.ru counter -->
+
+<div class="container">
+ 
+<?php
+require_once 'header.php';
+include ("menu.php");
+include ("sidebar1.html");
+
+echo '<div class="content">';
+
+if (isset($_GET['option'])) {
+		if ($_GET['option']=='main')		{include 'main.php';}
+		elseif ($_GET['option']=='sprav')	{include 'spravochnik.php';}
+		//elseif ($_GET['option']=='sprav')	{include 'no_access.php';} //блок.справочника
+		elseif ($_GET['option']=='news')	{include 'news.php';}
+		elseif ($_GET['option']=='articles'){include 'articles.php';}
+		elseif ($_GET['option']=='offers')	{include 'offers.html';}
+		elseif ($_GET['option']=='contacts'){include 'contacts.php';}
+		else 								{include 'main.php';}	
+		}
+	elseif (isset($_GET['news']) OR isset($_GET['new'])) {include 'news.html';}	
+	elseif (isset($_GET['search'])) 		{include 'search.php';}
+	//elseif (isset($_GET['search'])) 		{include 'no_access.php';} //блок.справочника
+
+	elseif (isset($_GET['reg'])) 			{include 'modules/registration/reg.html';}
+
+	elseif (isset($_GET['org'])) 			{include 'sprav.php';} //ищем справочник по новому — по org
+	//elseif (isset($_GET['org'])) 			{include 'no_access.php';} //блок.справочника
+
+	elseif (isset($_GET['art'])) {include 'articles.php';} //ищем статьи по новому — по art
+	elseif (isset($_GET['file'])) { //вставляем файл file? уазанный 
+		if ($_GET['file'] == '') { $_GET['file'] = 'content.php';}	//пока просто content.php 	//include 'articles.php';
+		$_POST['alias_for_content_xml'] ='arts_for_action';
+		include ('files/'.$_GET['file']);}
+	else {include 'main.html';	//выводим на главной, когда option не определен
+		}
+
+include ("completion.html");
+
+echo '</div>';// <!--  content -->
+
+include ("sidebar2.html");
+include("footer.php");
+
+echo '</div>';  //<!-- container -->
+echo '</body></html>';
+?>

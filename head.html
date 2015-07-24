@@ -1,0 +1,24 @@
+<?php
+	$meta = get_meta();
+?>	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title><?php echo $meta['title'];?></title>
+
+<meta name="description" content="<?php echo $meta['description'];?>">
+<meta name='yandex-verification' content='5a75b71db45eaee9'>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<?php echo $meta['og_url'];?>">
+<meta property="og:title" content="<?php echo $meta['og_title'];?>">
+<meta property="og:description" content="<?php echo $meta['og_description'];?>">
+<meta property="og:image" content="<?php echo $meta['og_image'];?>">
+
+<script src="<?php echo PATH ;?>/js/jquery-1.11.3.min.js"></script>
+<script src="<?php echo PATH ;?>/js/scripts.js"></script>
+<style type="text/css"></style>
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon-precomposed" href="favicon.png">
+<link rel="stylesheet" href="styles.css" type="text/css">

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> -->
+<content>
+
+<parameter name="Новостей на главной" alias="news_on_main" number="10" />
+<parameter name="Новостей на странице новостей" alias="news_on_news" number="30" />
+
+<parameter name="Статьи по акции" alias="arts_for_action" number="3">
+	<alias>Brigadir</alias>
+	<alias>Severstal</alias>
+	<alias>torgovyy-zal-1</alias>
+	<alias>Avtodom</alias>
+	<alias>komfort-01</alias>
+</parameter>
+
+<parameter name="Статьи на главной" alias="arts_for_main" number="4">
+	<alias>College</alias>
+	<alias>Delicatessen</alias>
+	<alias>Brigadir</alias>
+	<alias>action01</alias>
+</parameter>
+
+<parameter name="Коммерческие предложения на главной" alias="offers_for_main" number="4">
+	<alias>top-news</alias>
+	<alias>dictionary</alias>
+	<alias>plan</alias>
+</parameter>
+
+<!-- Статьи - коммерческие предложения -->
+<parameter name="Коммерческие предложения" alias="offers" number="4"> 
+	<alias>top-news</alias>
+	<alias>dictionary</alias>
+	<alias>plan</alias>
+	<alias>mapwall</alias>
+	<alias>presentation</alias>
+</parameter>
+
+</content>
+
