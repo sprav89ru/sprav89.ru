@@ -6,6 +6,7 @@
 	.group2 {margin: 4px 0px 2px 20px; background-color: #E7E7FF; font-size: 11pt; }
 	.name {margin-left: 40px;  font-size: 10pt}
 	.name_del {margin-left: 40px;  font-size: 10pt; color: red; }
+	.name_del_ {margin-left: 50px;  font-size: 9pt; color: blue; }
 	.tel {margin-left: 60px; font-size: 9pt}
 	.dop {margin-left: 70px; background-color: #F5CDFB; font-size: 9pt}
 	a {text-decoration:none}
@@ -19,9 +20,12 @@
 
 <!-- <h1>Тест</h1>	 -->
 
-<?php 	require_once '../login.php'; ?>
-
-<p><a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=all">Показать все</a> — <a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=show_del">Показать удаляемые</a></p>
+<?php 	require_once '../login.php'; 
+echo '<p>PATH = '.PATH.'; HOST = '.HOST.'; USER = '.USER.'; PASSWORD = '.PASSWORD.';  DB = '.DB_SPRAV89.'</p>'
+?>
+<p>
+<a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=all">Показать все</a> — <a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=show_del">Показать удаляемые</a> — <a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=query_del">Показать запросы на удаление</a> — <a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=del">Выполнить запросы на удаление</a>
+</p>
 
 <?php
 
@@ -36,12 +40,25 @@
 if (isset($_GET['opt'])) {
 	if ($_GET['opt'] == "all") {	show_all($mysqli); 	}
 	elseif ($_GET['opt'] == "show_del") {	show_del($mysqli); 	}
+	elseif ($_GET['opt'] == "query_del") {	show_del($mysqli); 	}
+	elseif ($_GET['opt'] == "del") {	show_del($mysqli); 	}
 	else { show_all($mysqli);	}
 	}
 else { echo show_all($mysqli);	}
 
-function add_to_arrays($mysqli,$id2) {
+function create_query_del($mysqli,$ids) {
+	//получает $ids удаляемого справочника
+	//формирует массив запросов на удаление 
+	$q['qspr']	 = 'DELETE FROM sprav WHERE id ="'.$ids.'"'; // сам элемент справочника
+	$q['qalias'] = 'DELETE FROM aliases WHERE id ="'.$ids.'"'; // алиас справочника
+	$q['qtel']	 = 'DELETE FROM sprav_tel WHERE idr ="'.$ids.'"'; //ТЕЛЕФОНЫ Справочника 
+	//Элементы справочника с Доп.материалами не удаляются, специально отбирали только те, что без доп.
+	return $q; 
 
+	}
+
+function add_to_arrays($mysqli,$id2) {
+	//получает id группы ($id2), в которой находит удаляемые элементы
 	//СПРАВОЧНИК 
 	$qs ='SELECT * FROM sprav WHERE idr ="'.$id2.'" ORDER BY kod';
 	$ress = mysqli_query($mysqli, $qs) or die( mysqli_error($mysqli) );
@@ -54,12 +71,12 @@ function add_to_arrays($mysqli,$id2) {
 	$qd ='SELECT * FROM sprav_dop WHERE idr ="'.$ids.'" ORDER BY id';
 	$res_mat = mysqli_query($mysqli, $qd) or die( mysqli_error($mysqli) );
 
-	$num = 0; $del = true;
+	$num = 0; $del = 1;
 	while ($row_mat = mysqli_fetch_assoc($res_mat)) 
-		{$num++;} 
-		if ($num>0) {$del = false; } 
+		 { $num++; } //echo $rows['alias_ru'];
+		if ($num>0) {$del = 0; } 
 
-	if (($rows['kod'] <= 4) OR ($del == false)) {
+	if (($rows['kod'] <= 4) OR ($del == 0)) {
 		echo '<div class="name"><b>'.$rows['kod'].'.&nbsp;</b><a href='.$link.' class="a_name">'.$rows['name'].'</a></div>';
 		//ТЕЛЕФОНЫ 
 		$qt ='SELECT * FROM sprav_tel WHERE idr ="'.$ids.'" ORDER BY id';
@@ -77,9 +94,19 @@ function add_to_arrays($mysqli,$id2) {
 			{echo '<div class="dop">Есть доп.материалы</div>';} //конец вывода доп.материала
 	}
 	else {
-		echo '<div class="name_del"> $rows[kod] '.$rows['kod'].' $del  = '.$del.'</div>';
-	} // формируем запрсы на удаление 
-	}
+		echo '<div class="name_del"><b>'.$rows['kod'].'.&nbsp;</b>'.$rows['name'].' del = '.$del.'</div>';//показываем удаляемые
+		if ($_GET['opt'] == "query_del") { $q = create_query_del($mysqli, $ids); 
+			echo '<div class="name_del_">'.$q['qspr'].'</div>';
+			echo '<div class="name_del_">'.$q['qalias'].'</div>';
+			echo '<div class="name_del_">'.$q['qtel'].'</div>';
+			}
+		if ($_GET['opt'] == "del") { $q = create_query_del($mysqli, $ids); 
+			mysqli_query($mysqli, $q['qspr']) or die( mysqli_error($mysqli) );
+			mysqli_query($mysqli, $q['qalias']) or die( mysqli_error($mysqli) );
+			mysqli_query($mysqli, $q['qtel']) or die( mysqli_error($mysqli) );
+			}
+		}// формируем запросы на удаление 
+	}//while ($rows = mysqli_fetch_assoc($ress))
 }
 
 function show_del($mysqli) {
