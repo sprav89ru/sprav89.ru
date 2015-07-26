@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- файл index.html<br> -->
+<style type="text/css">
+	.group1 {margin-left: 10px; background-color: #BFBFC8; font-size: 12pt; font-weight: bold;}
+	.group2 {margin: 4px 0px 2px 20px; background-color: #E7E7FF; font-size: 11pt; }
+	.name {margin-left: 40px;  font-size: 10pt}
+	.name_del {margin-left: 40px;  font-size: 10pt; color: red; }
+	.tel {margin-left: 60px; font-size: 9pt}
+	.dop {margin-left: 70px; background-color: #F5CDFB; font-size: 9pt}
+	a {text-decoration:none}
+
+</style> 
+
+<head>
+</head>
+
+<body>
+
+<!-- <h1>Тест</h1>	 -->
+
+<?php 	require_once '../login.php'; ?>
+
+<p><a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=all">Показать все</a> — <a href = "<?php echo PATH; ?>/files/SQLedit.html?opt=show_del">Показать удаляемые</a></p>
+
+<?php
+
+	$mysqli = mysqli_connect(HOST,USER,PASSWORD,DB_SPRAV89);
+		
+	if ($mysqli->connect_error) {
+	die('Ошибка подключения (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+	}
+	mysqli_query($mysqli,"SET NAMES utf8");
+
+
+if (isset($_GET['opt'])) {
+	if ($_GET['opt'] == "all") {	show_all($mysqli); 	}
+	elseif ($_GET['opt'] == "show_del") {	show_del($mysqli); 	}
+	else { show_all($mysqli);	}
+	}
+else { echo show_all($mysqli);	}
+
+function add_to_arrays($mysqli,$id2) {
+
+	//СПРАВОЧНИК 
+	$qs ='SELECT * FROM sprav WHERE idr ="'.$id2.'" ORDER BY kod';
+	$ress = mysqli_query($mysqli, $qs) or die( mysqli_error($mysqli) );
+
+	while ($rows = mysqli_fetch_assoc($ress)) {
+	$link=''.PATH.'/?org='.$rows['alias_ru'];
+	$ids=$rows['id'];
+
+	// Получили $ids — Сразу проверяем на ДОП МАТЕРИАЛЫ
+	$qd ='SELECT * FROM sprav_dop WHERE idr ="'.$ids.'" ORDER BY id';
+	$res_mat = mysqli_query($mysqli, $qd) or die( mysqli_error($mysqli) );
+
+	$num = 0; $del = true;
+	while ($row_mat = mysqli_fetch_assoc($res_mat)) 
+		{$num++;} 
+		if ($num>0) {$del = false; } 
+
+	if (($rows['kod'] <= 4) OR ($del == false)) {
+		echo '<div class="name"><b>'.$rows['kod'].'.&nbsp;</b><a href='.$link.' class="a_name">'.$rows['name'].'</a></div>';
+		//ТЕЛЕФОНЫ 
+		$qt ='SELECT * FROM sprav_tel WHERE idr ="'.$ids.'" ORDER BY id';
+		$res_tel = mysqli_query($mysqli, $qt) or die( mysqli_error($mysqli) );
+
+		echo '<div class="tel">';
+			while ($row_tel = mysqli_fetch_assoc($res_tel)) {
+			echo ''.$row_tel['format_vyvoda_strok'].' – ';		
+			}
+			echo '</div>';	
+		// ДОП МАТЕРИАЛЫ
+		$qd ='SELECT * FROM sprav_dop WHERE idr ="'.$ids.'" ORDER BY id';
+		$res_mat = mysqli_query($mysqli, $qd) or die( mysqli_error($mysqli) );
+		while ($row_mat = mysqli_fetch_assoc($res_mat))
+			{echo '<div class="dop">Есть доп.материалы</div>';} //конец вывода доп.материала
+	}
+	else {
+		echo '<div class="name_del"> $rows[kod] '.$rows['kod'].' $del  = '.$del.'</div>';
+	} // формируем запрсы на удаление 
+	}
+}
+
+function show_del($mysqli) {
+
+	$q1 = 'SELECT * FROM roditel1 ORDER BY kod';
+	$res1 = mysqli_query($mysqli, $q1) or die (mysqli_error());
+	
+	while ($row1 = mysqli_fetch_assoc($res1))
+		{
+		$format_vyvoda_strok='roditel1';
+		$kod=$row1['kod'];
+		$id1=$row1['id'];
+		$name=$row1['name'];
+		$link=''.PATH.'/?org='.$row1['alias_ru'].'';
+			
+		echo '<div class="group1"><b>'.$row1['kod'].'.&nbsp;</b><a class="a_group1" href=' . $link .'>'.$name.'</a></div>'; // id = '.$id1.' 
+		
+			$q2 ='SELECT * FROM roditel2 WHERE idr ="'.$id1.'" ORDER BY kod';
+			$res2 = mysqli_query($mysqli, $q2) or die(mysql_error());
+		while ($row2 = mysqli_fetch_assoc($res2)) 
+			{
+			$kod=$row2['kod'];
+			$id2=$row2['id'];
+			$idr1=$row2['idr'];
+			// $naimenovanie_na_pechat=$row['naimenovanie_na_pechat'];
+			$name=$row2['name'];
+			$link=''.PATH.'/?org='.$row2['alias_ru'].'';
+			
+			echo '<div class="group2"><b>'.$row2['kod'].'.&nbsp;</b><a class="a_group2" href=' . $link .'>'.$name.'</a></div>'; // idr = '.$idr1.' id = '.$id2.' 
+
+			add_to_arrays($mysqli,$id2);// элементы группы обрабатываем, разнося по массивам: arr_del и arr_stay  
+			}
+		}
+}	
+
+function show_all($mysqli) {
+
+	$q1 = 'SELECT * FROM roditel1 ORDER BY kod';
+	$res1 = mysqli_query($mysqli, $q1) or die (mysqli_error());
+	
+	while ($row1 = mysqli_fetch_assoc($res1))
+		{
+		$format_vyvoda_strok='roditel1';
+		$kod=$row1['kod'];
+		$id1=$row1['id'];
+		$name=$row1['name'];
+		$link=''.PATH.'/?org='.$row1['alias_ru'].'';
+			
+		echo '<div class="group1"><b>'.$row1['kod'].'.&nbsp;</b><a class="a_group1" href=' . $link .'>'.$name.'</a></div>'; // id = '.$id1.' 
+		
+			$q2 ='SELECT * FROM roditel2 WHERE idr ="'.$id1.'" ORDER BY kod';
+			$res2 = mysqli_query($mysqli, $q2) or die(mysql_error());
+		while ($row2 = mysqli_fetch_assoc($res2)) 
+			{
+			$kod=$row2['kod'];
+			$id2=$row2['id'];
+			$idr1=$row2['idr'];
+			// $naimenovanie_na_pechat=$row['naimenovanie_na_pechat'];
+			$name=$row2['name'];
+			$link=''.PATH.'/?org='.$row2['alias_ru'].'';
+			
+			echo '<div class="group2"><b>'.$row2['kod'].'.&nbsp;</b><a class="a_group2" href=' . $link .'>'.$name.'</a></div>'; // idr = '.$idr1.' id = '.$id2.' 
+				//СПРАВОЧНИК 
+				$qs ='SELECT * FROM sprav WHERE idr ="'.$id2.'" ORDER BY kod';
+				$ress = mysqli_query($mysqli, $qs) or die( mysqli_error($mysqli) );
+
+				while ($rows = mysqli_fetch_assoc($ress))
+				{
+				$link=''.PATH.'/?org='.$rows['alias_ru'];
+				$ids=$rows['id'];
+				//выводим шапку элемента <div class="naimenovanie_na_pechat"> </div>
+				echo '<div class="name"><b>'.$rows['kod'].'.&nbsp;</b><a href='.$link.' class="a_name">'.$rows['name'].'</a></div>';
+				// idr = '.$id2.' id = '.$ids.' 
+
+				//ТЕЛЕФОНЫ 
+				$qt ='SELECT * FROM sprav_tel WHERE idr ="'.$ids.'" ORDER BY id';
+				$res_tel = mysqli_query($mysqli, $qt) or die( mysqli_error($mysqli) );
+
+				echo '<div class="tel">';
+					while ($row_tel = mysqli_fetch_assoc($res_tel)) {
+					echo ''.$row_tel['format_vyvoda_strok'].' – ';		
+					}
+				echo '</div>';	//Конец вывода телефонов
+	
+				// ДОП МАТЕРИАЛЫ
+				$qd ='SELECT * FROM sprav_dop WHERE idr ="'.$ids.'" ORDER BY id';
+				$res_mat = mysqli_query($mysqli, $qd) or die( mysqli_error($mysqli) );
+					
+				while ($row_mat = mysqli_fetch_assoc($res_mat))
+					{
+					echo '<div class="dop">Есть доп.материалы</div>';
+					//echo ''.$row_mat['html_code'];
+					} //конец вывода доп.материала
+
+				}
+			}
+		}
+}	
+?>
+
+</body>
+</html>
