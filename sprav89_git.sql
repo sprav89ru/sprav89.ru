@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 26 2015 г., 20:08
+-- Время создания: Авг 16 2015 г., 20:30
 -- Версия сервера: 5.5.41
 -- Версия PHP: 5.3.5
 
@@ -4264,6 +4264,22 @@ INSERT INTO `sprav_tel` (`format_vyvoda_strok`, `adres`, `podrazdelenie_filial`,
 ('22_tolko_telefony', '', '', '', '', '94-44-57', '1c40b968-0126-11e5-b011-d43d7eea3028', 1, '1c40b968-0126-11e5-b011-d43d7eea3028-01', '', '', ''),
 ('19_sayt_', '', '', '', '', '', '1c40b968-0126-11e5-b011-d43d7eea3028', 2, '1c40b968-0126-11e5-b011-d43d7eea3028-02', 'artcafe89.ru', '', '');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL,
+  `login` varchar(20) NOT NULL,
+  `password` varchar(35) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `reg_date` varchar(32) NOT NULL,
+  `name_user` varchar(32) NOT NULL,
+  `lastname` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -4342,6 +4358,12 @@ ALTER TABLE `sprav_tel`
   ADD KEY `id_2` (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -4350,6 +4372,11 @@ ALTER TABLE `sprav_tel`
 --
 ALTER TABLE `menu`
   MODIFY `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
