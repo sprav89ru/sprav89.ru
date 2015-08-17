@@ -1,0 +1,104 @@
+
+<h2 class="sectionedit1" id="файл_indexhtml">Файл index.html</h2>
+<div class="level2">
+
+<p>
+Загружаются файлы:<br/>
+
+</p>
+<ul>
+<li class="level1"><div class="li"><strong>login.php</strong> (БД, пользователь БД, логин, пароль)<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>funcs.php</strong> — основные функции<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>head.html</strong> (содержит все, что обычно указывается в теге &lt;head&gt;: метаданные страницы, подключение js-скриптов, стилей, фавиконов и т.д.)</div>
+</li>
+<li class="level1"><div class="li">код аналитики и счетчиков<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>header.php</strong> — пока только рисунок шапки img/header.jpg<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>menu.php</strong> — формирует строку меню<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>sidebar1.html</strong> — левый сайдбар<br/>
+</div>
+</li>
+</ul>
+
+<p>
+В основном блоке сайта (<strong>content</strong>):<br/>
+
+— при определенном в GET параметре <strong><em>option</em></strong>, при значении <em>option</em> <code class="code php"><span class="br0">&#40;</span><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st_h">'option'</span><span class="br0">&#93;</span><span class="sy0">==</span><span class="st_h">''</span><span class="br0">&#41;</span></code>:<br/>
+
+</p>
+<ul>
+<li class="level1"><div class="li">main — загружается файл <strong>main.php</strong> (Основная, содержит блок новостей, блок статей, блок коммерческих предложений и оглавление справочника)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">sprav — <strong>spravochnik.php</strong> (Телефонный справочник)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">news — <strong>news.php</strong> (выводит Новости)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">articles — <strong>articles.php</strong> (выводит Статьи)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">offers — <strong>offers.html</strong> (выводит Коммерческие предложения)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">contacts — <strong>contacts.php</strong> (выводит страницу Контакты)<br/>
+</div>
+</li>
+<li class="level1"><div class="li">не определено — <strong>main.php</strong> (Основная);<br/>
+</div>
+</li>
+</ul>
+
+<p>
+На самом деле приведены здесь приведены старые варианты, которые пока еще используются, но от которых в дальнейшем решено отказаться.<br/>
+
+Сейчас взят курс на использование не <em>различных значений параметра option</em>, а различные параметры <code class="code php"><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st_h">'параметр'</span><span class="br0">&#93;</span><span class="sy0">==</span><span class="st_h">''</span></code>.<br/>
+
+Так, при значении <em>параметра</em>:
+</p>
+<ul>
+<li class="level1"><div class="li">org — <strong>sprav.php</strong> (Справочник. В параметре org= передается алиас элемента или группы справочника)</div>
+</li>
+<li class="level1"><div class="li">art — <strong>articles.php</strong> (Статьи. В art= — алиас статьи)</div>
+</li>
+<li class="level1"><div class="li">news или new — файл <strong>news.html</strong> (Новости. В news= — параметры нескольких новостей, в new= — одной новость  )</div>
+</li>
+<li class="level1"><div class="li">search — <strong>search.php</strong> (Поиск по справочнику. В search= — строка поиска)</div>
+</li>
+<li class="level1"><div class="li">reg — modules/registration/<strong>reg.html</strong> (Форма регистрации или входа) </div>
+</li>
+<li class="level1"><div class="li">не определен — <strong>main.php</strong> (Основной)</div>
+</li>
+</ul>
+
+<p>
+Далее загружаются файлы:<br/>
+
+</p>
+<ul>
+<li class="level1"><div class="li"><strong>completion.html</strong> (кнопки соцсетей)<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>sidebar2.html</strong> (левый сайдбар)<br/>
+</div>
+</li>
+<li class="level1"><div class="li"><strong>footer.php</strong> (подвал)<br/>
+</div>
+</li>
+</ul>
+
+<p>
+В дальнейшем будут добавлены отдельные статьи по каждому указанному файлу или операции.
+</p>
+
+</div>
